@@ -22,7 +22,7 @@ Mais detalhes na [documentação do n8n sobre community nodes](https://docs.n8n.
 
 Inicia o fluxo quando chega uma mensagem no seu número. Ao ativar o fluxo, o nó se cadastra sozinho no msg.api e, ao desativar, se remove. Não é preciso copiar nenhum webhook.
 
-- **Eventos:** mensagem recebida; mensagem da fila anti-ban enviada ou com falha.
+- **Eventos:** mensagem recebida; voto em enquete (com as opções escolhidas); mensagem da fila anti-ban enviada ou com falha.
 - **Opções:** ignorar mensagens de grupos e incluir as mensagens enviadas pelo próprio número. Por padrão, elas ficam de fora para evitar respostas em loop.
 
 Cada mensagem recebida chega assim:
@@ -56,6 +56,22 @@ Com o anti-ban ligado, os textos entram na fila e saem no ritmo de uma pessoa. P
 No **Send File**, escolha a origem: um arquivo binário de um nó anterior ou um link https (até 25 MB), que o msg.api baixa. Com **File Type** em *Auto-Detect*, fotos, vídeos e áudios que o WhatsApp exibe vão como mídia, e o resto como documento.
 
 O nó também pode ser usado como ferramenta do **AI Agent**.
+
+Cada voto em enquete chega assim (`options` vazio quando a pessoa tira o voto):
+
+```json
+{
+  "event": "poll.vote",
+  "poll_id": "3EB0A1B2C3D4E5F6A7B8",
+  "poll_name": "Quer continuar recebendo?",
+  "chat": "5567999999999@s.whatsapp.net",
+  "from": "5567999999999@s.whatsapp.net",
+  "from_me": false,
+  "options": ["Sair"]
+}
+```
+
+Só dá para ler votos de enquetes enviadas depois que o número foi conectado ao msg.api: é quando o msg.api guarda o código que o WhatsApp usa para cifrar os votos.
 
 ## Exemplo: responder automaticamente
 

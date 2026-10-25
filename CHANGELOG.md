@@ -4,6 +4,7 @@
 
 - Send File: o arquivo pode vir de um link https, além do binário; tipo detectado automaticamente (*Auto-Detect*).
 - Novo recurso Anti-Ban: Get e Update (ligar, desligar, limites, intervalo, horário ativo e aquecimento).
+- msg.api Trigger: novo evento Poll Vote, com as opções escolhidas em enquetes enviadas pelo número.
 
 ## 0.1.0
 

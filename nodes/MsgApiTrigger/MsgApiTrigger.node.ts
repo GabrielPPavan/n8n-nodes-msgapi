@@ -83,6 +83,11 @@ export class MsgApiTrigger implements INodeType {
 						value: 'message.sent',
 						description: 'A message waiting in the anti-ban queue was sent',
 					},
+					{
+						name: 'Poll Vote',
+						value: 'poll.vote',
+						description: 'Someone voted in a poll sent by this number, with the chosen options',
+					},
 				],
 				default: ['message.received'],
 			},
@@ -168,7 +173,7 @@ export class MsgApiTrigger implements INodeType {
 
 		const skip =
 			!events.includes(event) ||
-			(event === 'message.received' && body.from_me === true && !options.includeFromMe) ||
+			((event === 'message.received' || event === 'poll.vote') && body.from_me === true && !options.includeFromMe) ||
 			(options.ignoreGroups === true && chat.endsWith('@g.us'));
 		if (skip) {
 			return {};
