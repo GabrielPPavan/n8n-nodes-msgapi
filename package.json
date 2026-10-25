@@ -1,14 +1,15 @@
 {
   "name": "n8n-nodes-msgapi",
-  "version": "0.1.0",
-  "description": "Envie e receba mensagens de WhatsApp no n8n com o msg.api: texto, mídia, enquetes, grupos e gatilho de mensagem recebida.",
+  "version": "0.2.0",
+  "description": "Envie e receba mensagens de WhatsApp no n8n com o msg.api: texto, arquivos, enquetes, grupos, anti-ban e gatilho de mensagem recebida.",
   "license": "MIT",
   "homepage": "https://msg.api.br",
   "keywords": [
     "n8n-community-node-package",
     "whatsapp",
     "msg.api",
-    "whatsapp-api"
+    "whatsapp-api",
+    "anti-ban"
   ],
   "author": {
     "name": "PavanTech",

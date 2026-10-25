@@ -1,4 +1,5 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
+import { antibanDescription } from './resources/antiban';
 import { messageDescription } from './resources/message';
 import { apiError } from './shared';
 import { connectionDescription, contactDescription, groupDescription } from './resources/others';
@@ -11,7 +12,7 @@ export class MsgApi implements INodeType {
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Send WhatsApp messages, files and polls, and manage contacts and groups with msg.api',
+		description: 'Send WhatsApp messages, files and polls, manage contacts and groups, and set the anti-ban with msg.api',
 		defaults: {
 			name: 'msg.api',
 		},
@@ -39,6 +40,7 @@ export class MsgApi implements INodeType {
 				type: 'options',
 				noDataExpression: true,
 				options: [
+					{ name: 'Anti-Ban', value: 'antiban' },
 					{ name: 'Connection', value: 'connection' },
 					{ name: 'Contact', value: 'contact' },
 					{ name: 'Group', value: 'group' },
@@ -51,6 +53,7 @@ export class MsgApi implements INodeType {
 			...contactDescription,
 			...groupDescription,
 			...connectionDescription,
+			...antibanDescription,
 		],
 	};
 }

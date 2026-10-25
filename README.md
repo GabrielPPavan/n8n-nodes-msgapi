@@ -43,14 +43,17 @@ Cada mensagem recebida chega assim:
 
 | Recurso | Operações |
 |---|---|
-| Message | Send Text, Send File (imagem, vídeo, áudio ou documento a partir de um arquivo binário), Send Poll, React, Mark as Read |
+| Message | Send Text, Send File (imagem, vídeo, áudio ou documento, de um arquivo binário ou de um link), Send Poll, React, Mark as Read |
 | Contact | Check (quais números têm WhatsApp), Get, Get Profile Picture |
 | Group | Get Many, Get, Create, Add Participants |
 | Connection | Get Status, Get Profile |
+| Anti-Ban | Get, Update (ligar, desligar, limites por minuto, hora e dia, intervalo entre mensagens, horário ativo e aquecimento de número novo) |
 
 Os números vão com DDI e DDD, só dígitos (ex.: `5567999999999`). Grupos usam o ID terminado em `@g.us`.
 
 Com o anti-ban ligado, os textos entram na fila e saem no ritmo de uma pessoa. Para códigos de verificação, ligue **Send Immediately**.
+
+No **Send File**, escolha a origem: um arquivo binário de um nó anterior ou um link https (até 25 MB), que o msg.api baixa. Com **File Type** em *Auto-Detect*, fotos, vídeos e áudios que o WhatsApp exibe vão como mídia, e o resto como documento.
 
 O nó também pode ser usado como ferramenta do **AI Agent**.
 
@@ -62,7 +65,7 @@ O nó também pode ser usado como ferramenta do **AI Agent**.
 ## English
 
 - **msg.api Trigger:** starts a workflow when a WhatsApp message arrives. It registers and removes its own webhook automatically.
-- **msg.api:** sends texts, files and polls, and manages contacts and groups.
+- **msg.api:** sends texts, files (from binary data or an https link) and polls, manages contacts and groups, and turns the anti-ban on, off or adjusts it.
 - **Credentials:** the API key of your number, from the msg.api panel.
 
 ## Licença
