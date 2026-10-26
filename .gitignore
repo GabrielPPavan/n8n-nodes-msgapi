@@ -1,3 +1,4 @@
 dist
 node_modules
 publicar.ps1
+publicar-token.ps1
