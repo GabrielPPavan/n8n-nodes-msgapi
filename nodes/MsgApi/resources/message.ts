@@ -74,6 +74,47 @@ export const messageDescription: INodeProperties[] = [
 		routing: { send: { type: 'body', property: 'urgent' } },
 	},
 
+	{
+		displayName: 'Reply To Message',
+		name: 'quoted',
+		type: 'collection',
+		placeholder: 'Add Field',
+		default: {},
+		description: 'Reply quoting a message. Use the fields of the message from the trigger: ID, from, from_me and text.',
+		displayOptions: show(['sendText', 'sendMedia']),
+		options: [
+			{
+				displayName: 'From',
+				name: 'from',
+				type: 'string',
+				default: '',
+				description: 'Who sent the quoted message (from in the trigger). Required in groups.',
+			},
+			{
+				displayName: 'From Me',
+				name: 'from_me',
+				type: 'boolean',
+				default: false,
+				description: 'Whether the quoted message was sent by this number',
+			},
+			{
+				displayName: 'Message ID',
+				name: 'id',
+				type: 'string',
+				default: '',
+				description: 'ID of the message to quote, as it comes in the trigger',
+			},
+			{
+				displayName: 'Text',
+				name: 'text',
+				type: 'string',
+				default: '',
+				description: 'Text of the quoted message, shown above the reply',
+			},
+		],
+		routing: { send: { type: 'body', property: 'quoted', value: '={{ $value.id ? $value : undefined }}' } },
+	},
+
 	// ----- Send File
 	{
 		displayName: 'Source',

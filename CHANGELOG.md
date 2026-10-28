@@ -2,6 +2,7 @@
 
 ## 0.3.0
 
+- Send Text e Send File: novo campo *Reply To Message* para responder citando uma mensagem (id, from, from_me e text, como vêm do gatilho).
 - msg.api Trigger: novos eventos Message Status (entregue, lida, ouvida), Message Reaction, Message Edited, Message Deleted, Connection Update, History Sync e Contacts Update; Message Sent passa a valer para todo envio pela API.
 - Mensagens do próprio número (reações, edições e exclusões também) continuam ignoradas, a menos que *Include From Me* esteja ligado.
 
