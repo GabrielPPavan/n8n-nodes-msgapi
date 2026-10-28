@@ -11,6 +11,9 @@ import {
 	type JsonObject,
 } from 'n8n-workflow';
 
+/** Eventos que podem vir do próprio número (ex.: alguém respondendo pelo celular). */
+const FROM_ME_EVENTS = ['message.received', 'poll.vote', 'message.reaction', 'message.edited', 'message.deleted'];
+
 interface Subscription {
 	id: string;
 	url: string;
@@ -69,9 +72,39 @@ export class MsgApiTrigger implements INodeType {
 				required: true,
 				options: [
 					{
+						name: 'Connection Update',
+						value: 'connection.update',
+						description: 'The number connected, disconnected, was logged out or got a temporary ban',
+					},
+					{
+						name: 'Contacts Update',
+						value: 'contacts.update',
+						description: 'Contact names and the link between phone number and hidden ID (LID)',
+					},
+					{
+						name: 'History Sync',
+						value: 'history.sync',
+						description: 'Recent chats sent by the phone right after connecting, in parts of up to 200 messages',
+					},
+					{
+						name: 'Message Deleted',
+						value: 'message.deleted',
+						description: 'A message was deleted for everyone',
+					},
+					{
+						name: 'Message Edited',
+						value: 'message.edited',
+						description: 'A message was edited, with the new text',
+					},
+					{
 						name: 'Message Failed',
 						value: 'message.failed',
-						description: 'A message waiting in the anti-ban queue could not be sent',
+						description: 'A message waiting in the anti ban queue could not be sent',
+					},
+					{
+						name: 'Message Reaction',
+						value: 'message.reaction',
+						description: 'Someone reacted to a message (or removed the reaction)',
 					},
 					{
 						name: 'Message Received',
@@ -81,7 +114,12 @@ export class MsgApiTrigger implements INodeType {
 					{
 						name: 'Message Sent',
 						value: 'message.sent',
-						description: 'A message waiting in the anti-ban queue was sent',
+						description: 'A message was sent through the API (directly or by the anti ban queue)',
+					},
+					{
+						name: 'Message Status',
+						value: 'message.status',
+						description: 'A sent message was delivered, read or played',
 					},
 					{
 						name: 'Poll Vote',
@@ -173,7 +211,7 @@ export class MsgApiTrigger implements INodeType {
 
 		const skip =
 			!events.includes(event) ||
-			((event === 'message.received' || event === 'poll.vote') && body.from_me === true && !options.includeFromMe) ||
+			(FROM_ME_EVENTS.includes(event) && body.from_me === true && !options.includeFromMe) ||
 			(options.ignoreGroups === true && chat.endsWith('@g.us'));
 		if (skip) {
 			return {};

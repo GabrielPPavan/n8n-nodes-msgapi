@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-msgapi",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Envie e receba mensagens de WhatsApp no n8n com o msg.api: texto, arquivos, enquetes, grupos, anti-ban e gatilho de mensagem recebida.",
   "license": "MIT",
   "homepage": "https://msg.api.br",

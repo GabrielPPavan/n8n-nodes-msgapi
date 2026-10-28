@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- msg.api Trigger: novos eventos Message Status (entregue, lida, ouvida), Message Reaction, Message Edited, Message Deleted, Connection Update, History Sync e Contacts Update; Message Sent passa a valer para todo envio pela API.
+- Mensagens do próprio número (reações, edições e exclusões também) continuam ignoradas, a menos que *Include From Me* esteja ligado.
+
 ## 0.2.0
 
 - Send File: o arquivo pode vir de um link https, além do binário; tipo detectado automaticamente (*Auto-Detect*).
